@@ -12,7 +12,6 @@ const PostsDetail = () => {
   
    const [posts, setPosts] = useState([]);
    const [comment, setcomment] = useState([]);
-   const [img, setimg] = useState([]);
     
  // -- post  api----
    useEffect(() => {
@@ -28,20 +27,13 @@ useEffect(() => {
     .then(data => setcomment(data))
 }, [])
 
-   useEffect(() =>{
-    fetch('https://randomuser.me/api/')
-    .then(res => res.json())
-    .then(data => {setimg(data.results[0].picture.thumbnail);
-    })
-},[]);
-    
     return (
         <div>
             <CssBaseline />
             <Container maxWidth="md">
                 <Posts showBtn={false} post={posts}></Posts>
                 {
-                    comment.map(comment => <Comments img={img} comment={comment}></Comments>)
+                    comment.map(comment => <Comments comment={comment}></Comments>)
                 }
                 
             </Container>
